@@ -1,0 +1,40 @@
+>Make a new rails project
+rails new cactus -G --database=postgresql
+
+>Make the database
+rake db:create
+
+>Make a migration
+rails generate migration CreatePeople
+
+>Run the migration:
+rake db:migrate
+
+
+>Populate a migration
+cactus/db/migrate/20190123055655_create_people.rb
+
+class CreatePeople < ActiveRecord::Migration[5.2]
+  def change
+    create_table :people do |t|
+      t.string :name, null: false
+      t.integer :house_id, null: false
+    end
+  end
+end
+
+>Schema located at cactus/db/schema.rb
+
+>Create the model
+cactus/app/models/people.rb
+
+class People < ActiveRecord::Base
+
+end
+
+
+>Test with rails console
+house = House.new(address: '308 Negra Arroyo Lane')
+person = Person.new(name: 'Walter White', house_id: house.id)
+shouse.save!
+person.save!
