@@ -33,7 +33,8 @@ class People < ActiveRecord::Base
 end
 
 
->Test with rails console
+>Test
+>rails console
 house = House.new(address: '308 Negra Arroyo Lane')
 person = Person.new(name: 'Walter White', house_id: house.id)
 shouse.save!
