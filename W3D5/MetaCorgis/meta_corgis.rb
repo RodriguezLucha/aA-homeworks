@@ -111,10 +111,41 @@ class MetaCorgiSnacks
 
   def method_missing(name, *args)
     # Your code goes here...
+    #p name
+    #p args
+    #p @snack_box.methods
+    #get_bone_info
+
+    # info = @snack_box.get_bone_info(@box_id)
+    # tastiness = @snack_box.get_bone_tastiness(@box_id)
+    # result = "Bone: #{info}: #{tastiness} "
+    # tastiness > 30 ? "* #{result}" : result
+
+
+    info = @snack_box.send("get_#{name}_info", @box_id)
+    tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+    result = "#{name.capitalize}: #{info}: #{tastiness} "
+    tastiness > 30 ? "* #{result}" : result
   end
 
 
   def self.define_snack(name)
     # Your code goes here...
   end
+end
+
+
+if __FILE__ == $PROGRAM_NAME
+
+  # original
+  # snack_box = SnackBox.new
+  # puts snack_box.get_bone_info(1) # => "Phoenician rawhide"
+  # puts snack_box.get_kibble_tastiness(3) # => 45
+
+  #Phase 1: Refactor with #method_missing
+  snack_box = SnackBox.new
+  meta_snacks = MetaCorgiSnacks.new(snack_box, 1)
+  puts meta_snacks.bone # => "Bone: Phoenician rawhide: 20 "
+  puts meta_snacks.kibble # => "* Kibble: Delicately braised hamhocks: 33"
+
 end
