@@ -1,0 +1,39 @@
+.splash {
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  text-align: center;
+  background-color: beige;
+  margin: 100px;
+  padding: 100px;
+  border-radius: 10px; 
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 25px;
+}
+
+.nav a {
+  padding-left: 25px;
+  font-size: 25px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+}
+
+.footer a {
+  background-color: beige;
+  padding: 20px;
+  border-radius: 25px;
+  border: 1px solid;
+}
