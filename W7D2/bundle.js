@@ -1203,9 +1203,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var addLoggingToDispatch = function addLoggingToDispatch(store) {
+  var storeDispatch = store.dispatch;
+  return function (action) {
+    console.log(store.getState());
+    console.log(action);
+    storeDispatch(action);
+    console.log(store.getState());
+  };
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   var preloadedState = localStorage.state ? JSON.parse(localStorage.state) : {};
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
+  store.dispatch = addLoggingToDispatch(store);
   var root = document.getElementById('content');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
