@@ -1205,12 +1205,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var addLoggingToDispatch = function addLoggingToDispatch(store) {
-  var storeDispatch = store.dispatch;
-  return function (action) {
-    console.log(store.getState());
-    console.log(action);
-    storeDispatch(action);
-    console.log(store.getState());
+  return function (next) {
+    return function (action) {
+      console.log(store.getState());
+      console.log(action);
+      store.dispatch(action);
+      console.log(store.getState());
+    };
   };
 };
 
